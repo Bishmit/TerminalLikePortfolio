@@ -2,42 +2,42 @@
     "home": {
         "projects": {
             "RigidBodyPhysicsEngine": {
-                "name": "RigidBodyPhysicsEngine\nRigid Body Simulation made in SFML/C++ from scratch. It isn't properly completed but it's fine.",
+                "name": "RigidBodyPhysicsEngine\n- Rigid Body Simulation made in SFML/C++ from scratch.\n- It isn't properly completed but it's good.",
                 "githubLink": "https://github.com/Bishmit/RigidBodyPhysicsEngine"
             },
             "CustomGraphTraversal": {
-                "name": "GraphTraversal\nThis is Graph traversal for DFS, BFS with visually appealing animation of traversal made in C++/SFML",
+                "name": "GraphTraversal\n- This is Graph traversal for DFS, BFS with visually appealing animation of traversal made in C++/SFML.",
                 "githubLink": "https://github.com/Bishmit/CustomTreeTraversal"
             },
             "AStarPathFinding": {
-                "name": "AStarPathFinding\nA* Algorithm visualization in C++/SFML which find shortest path from one point to another avoiding obstacles.",
+                "name": "AStarPathFinding\n- A* Algorithm visualization in C++/SFML which find shortest path from one point to another avoiding obstacles.",
                 "githubLink": "https://github.com/Bishmit/PathFinding-Visualization-using-Astar-algorithm"
             },
             "PlaneShooter": {
-                "name": "PlaneShooter\nMy SFML/C++ and highest line of coding game till date around 1500+ lines of code",
+                "name": "PlaneShooter\n- My SFML/C++ and highest line of coding game till date around 1500+ lines of code",
                 "githubLink": "https://github.com/Bishmit/Plane"
             },
             "DoublePendulum": {
-                "name": "DoublePendulum\nThis is simulation of Double Pendulum movement. First Simulation Project of me while learning SFML",
+                "name": "DoublePendulum\n- This is simulation of Double Pendulum movement.\n- First Simulation Project of me while learning SFML",
                 "githubLink": "https://github.com/Bishmit/Double_Pendulum"
             },
             "DilationErrosionSimulation": {
-                "name": "DilationErrosionSimulation\nIt is Dilation and Errosion simulation simulation. One of the important topic of Image Processing.",
+                "name": "DilationErrosionSimulation\n- It is Dilation and Errosion simulation for visualization.\n- One of the important topic of Image Processing.\n- Made it for other Student so they can visualize what's happening.",
                 "githubLink": "https://github.com/Bishmit/Dilation-method-IP-Simulation"
             }
         },
         "education": {
-            "School": "Sunrise English School\n SEE",
-            "Highschool": "Gurukul College\n +2 Science(biology+math)",
-            "university": "Lumbini ICT Campus\n B.Sc CSIT"
+            "School": "- Sunrise English School\n- SEE",
+            "HighSchool": "- Gurukul College\n- +2 Science(biology+math)",
+            "University": "- Lumbini ICT Campus\n- B.Sc CSIT"
         },
-        "achievements": "Runner up in intraschool hackathon\nParticipant Member of BOSC intercollege Hackathon\nUdemy Certification Course on python",
+        "achievements": "- Runner up in intraschool hackathon\n- Participant Member of BOSC intercollege Hackathon\n- Udemy Certification Course on python",
         "skills": {
-            "Language": "C++, Python, Javascript, C#, PHP",
-            "FrameWork_API": "SFML, OpenGL, Raylib",
-            "Tools": "CMake, Git, Github",
-            "Database": "SQL, noSQL, mongodb",
-            "OS": "Window, Ubuntu, MacOS"
+            "Language": "- C++, Python, Javascript, C#, PHP",
+            "FrameWork_API": "- SFML, OpenGL, Raylib",
+            "Tools": "- CMake, Git, Github",
+            "Database": "- SQL, noSQL, mongodb",
+            "OS": "- Window, Ubuntu, MacOS"
         }
     }
 }

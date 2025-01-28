@@ -21,7 +21,7 @@ function initializeTerminal() {
         }
     }
 
-    // Function to print the prompt
+    // to print the prompt
     function printPrompt() {
         const currentPath = getCurrentPath();
         output.innerHTML += `<span class="prompt">bishmitregmi@bishmit:~/${currentPath}$ </span><input type="text" class="commandInput no-border"><br>`;
@@ -41,12 +41,12 @@ function initializeTerminal() {
     ];
     
     
-    // function to get the current path as a string
+    //get the current path as a string
     function getCurrentPath() {
         return pathStack.join("/");
     }
 
-    // Handle user commands
+    // handle user commands
     function handleCommand(command) {
         const parts = command.split(" ");
         const cmd = parts[0];
@@ -64,7 +64,7 @@ function initializeTerminal() {
                 case "cd":
                     if (arg === "/") {
                         currentDir = fs.home;
-                        pathStack.length = 1; // Reset pathStack to root
+                        pathStack.length = 1; // reset pathStack to root
                     } else if (arg === "..") {
                         if (pathStack.length > 1) {
                             pathStack.pop();
@@ -127,12 +127,10 @@ function initializeTerminal() {
                 break;
         }
 
-        printPrompt(); // Print the prompt after the command is executed
+        printPrompt();
     }
 
-    // Initialize the first prompt
     printPrompt();
 }
 
-// Load the file system data
 loadFSData();
