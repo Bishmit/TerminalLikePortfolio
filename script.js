@@ -92,7 +92,7 @@ function initializeTerminal() {
                     if (typeof currentDir[arg] === "object") {
                         if (currentDir === fs.home.projects) {
                             const project = currentDir[arg];
-                            printOutput(`Project Name: ${project.name}<br>GitHub Link: <a href="${project.githubLink}" target="_blank">${project.githubLink}</a>`);
+                            printOutput(`Project Name: ${project.name}<br>GitHub Link: <a id="gitproj" href="${project.githubLink}" target="_blank">${project.githubLink}</a>`);
                         } else {
                             printOutput(`**${arg} is a directory.**`);
                         }

@@ -83,6 +83,8 @@ body {
     border: none;
     outline: none;
     background-color: transparent;
+    color: white;
+    width: 50%;
 }
 
 #commandInput:focus + .blinking-cursor {
@@ -106,6 +108,14 @@ body {
 .cv-link:hover {
     color: rgb(29, 255, 29);
     text-decoration: underline;
+}
+
+#gitproj{
+    color: rgb(38, 145, 145);
+}
+
+#gitproj:hover {
+    color: rgb(127, 188, 223);
 }
 
 @media (max-width: 768px) {
