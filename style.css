@@ -36,7 +36,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color:black; 
+    background-color:rgb(1, 14, 1); 
 }
 
 .output {
