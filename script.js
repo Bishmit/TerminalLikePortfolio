@@ -48,20 +48,30 @@ const pathStack = ["home"];
 
 const output = document.getElementById("output");
 const commandInput = document.getElementById("commandInput");
-const prompt = document.getElementById("prompt");
 
 function printOutput(text) {
+    const atBottom = output.scrollHeight - output.scrollTop === output.clientHeight;
     output.innerHTML += text + "<br><br>"; 
-    output.scrollTop = output.scrollHeight; 
+    if (atBottom) {
+        output.scrollTop = output.scrollHeight; 
+    }
 }
 
-const style = document.createElement('style');
-style.innerHTML = `
-  a {
-    color: cyan; 
-  }
-`;
-document.head.appendChild(style);
+// Function to print the prompt
+function printPrompt() {
+    const currentPath = getCurrentPath();
+    output.innerHTML += `<span class="prompt">bishmitregmi@bishmit:~/${currentPath}$ </span><input type="text" class="commandInput no-border"><br>`;
+    const newCommandInput = document.querySelectorAll('.commandInput');
+    const lastCommandInput = newCommandInput[newCommandInput.length - 1];
+    lastCommandInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            handleCommand(lastCommandInput.value.trim());
+            lastCommandInput.disabled = true;
+        }
+    });
+    lastCommandInput.focus();
+}
+
 
 // List of available commands
 const commands = {
@@ -77,12 +87,6 @@ const commands = {
 // function to get the current path as a string
 function getCurrentPath() {
     return pathStack.join("/");
-}
-
-// function to update the prompt with the current directory
-function updatePrompt() {
-    const currentPath = getCurrentPath();
-    prompt.textContent = `bishmitregmi@bishmit:~/${currentPath}$`;
 }
 
 // Handle user commands
@@ -124,7 +128,6 @@ function handleCommand(command) {
             } else {
                 printOutput(`**No such directory: ${arg}**`);
             }
-            updatePrompt(); // Update the prompt after changing the directory
             break;
 
         case "cat":
@@ -146,7 +149,6 @@ function handleCommand(command) {
 
         case "clear":
             output.innerHTML = ""; // Clear the terminal output
-            updatePrompt();
             break;
 
         case "help":
@@ -172,16 +174,8 @@ function handleCommand(command) {
             break;
     }
 
-    commandInput.value = "";
-    commandInput.focus();
+    printPrompt(); // Print the prompt after the command is executed
 }
 
-// process the command ad enter is pressed
-commandInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        const command = commandInput.value.trim();
-        if (command) {
-            handleCommand(command);
-        }
-    }
-});
+// Initialize the first prompt
+printPrompt();
