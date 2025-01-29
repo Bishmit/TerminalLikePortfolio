@@ -31,6 +31,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     background-color:rgb(0, 10, 0); 
+    font-size: 110%; 
 }
 
 .output {
@@ -53,19 +54,13 @@ body {
 
 .prompt {
     color: #00FF00;
-    margin-right: -5px;
+    font-size: large;
+    margin-right: -6px;
 }
 
-#commandInput {
-    background-color: black;
-    color: white;
-    border: none;
-    outline: none;
-    width: auto; 
-    flex: 1; 
-    font-size: 1em;
-    padding: 5px;
-    margin: 0;
+.user-command{
+    font-size: 82%;
+    font-family: sans-serif;
 }
 
 .blinking-cursor {
@@ -73,7 +68,9 @@ body {
     color: #00FF00;
 }
 
-.no-border {
+.commandInput{
+    font-size: 82%;
+    font-family: sans-serif;
     border: none;
     outline: none;
     background-color: transparent;

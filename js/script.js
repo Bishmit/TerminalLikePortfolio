@@ -24,16 +24,27 @@ function initializeTerminal() {
     // to print the prompt
     function printPrompt() {
         const currentPath = getCurrentPath();
-        output.innerHTML += `<span class="prompt">bishmitregmi@bishmit:~/${currentPath}$ </span><input type="text" class="commandInput no-border"><br>`;
+        output.innerHTML += `<span class="prompt">bishmitregmi@bishmit:~/${currentPath}$ </span><input type="text" class="commandInput"><br>`;
         const newCommandInput = document.querySelectorAll('.commandInput');
         const lastCommandInput = newCommandInput[newCommandInput.length - 1];
         lastCommandInput.addEventListener("keydown", function (event) {
             if (event.key === "Enter") {
-                handleCommand(lastCommandInput.value.trim());
-                lastCommandInput.disabled = true;
+                const cmdTxt = lastCommandInput.value.trim(); 
+                if(cmdTxt !== ""){
+                    lastCommandInput.outerHTML = `<span class="user-command">${cmdTxt}</span>`;
+                }
+                handleCommand(cmdTxt);
             }
         });
+        // Focus on the input field
         lastCommandInput.focus();
+
+        // prevent input from losing focus when clicking anywhere outside
+        document.addEventListener("click", function (event) {
+            if (!lastCommandInput.contains(event.target)) {
+                lastCommandInput.focus();
+            }
+        });
     }
 
     const commands = [
