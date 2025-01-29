@@ -67,7 +67,7 @@ function initializeTerminal() {
         switch (cmd) {
             case "ls":
                 if (typeof currentDir === "object") {
-                    printOutput(Object.keys(currentDir).join("<br>"));
+                    printOutput(Object.keys(currentDir).join("    "));
                 } else {
                     printOutput("**Cannot list contents of a file.**");
                 }
@@ -120,9 +120,7 @@ function initializeTerminal() {
                 break;
 
             case "help":
-                for (let cmd in commands) {
-                    printOutput(`${commands[cmd]}`);
-                }
+                printOutput(commands.join("    ")); 
                 break;
 
             case "pwd":
