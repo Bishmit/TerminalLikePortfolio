@@ -3,7 +3,7 @@ let currentDir;
 const pathStack = ["home"];
 
 async function loadFSData() {
-    const response = await fetch('data.json'); 
+    const response = await fetch('../json/data.json'); 
     fs = await response.json();
     currentDir = fs.home;
     initializeTerminal();
@@ -37,7 +37,7 @@ function initializeTerminal() {
     }
 
     const commands = [
-        "ls", "cd", "cat", "clear", "pwd", "whoami"
+        "ls", "cd", "cat", "clear", "pwd", "whoami", "neofetch"
     ];
     
     
@@ -121,6 +121,11 @@ function initializeTerminal() {
             case "whoami":
                 printOutput(`Hello there. I am Bishmit Regmi, Dedicated and passionate C++ learner with interest in developing high-performance algorithms, interactive simulations, graphics programming and Game development. Proficient in modern C++ standards(C++11/14/17/20), physics simulations, and recreational programming. I am keen to pursue a career in software development and related technical roles.`);
                 break;
+            
+            case "neofetch":
+              const asci = displayNeofetch(); 
+              printOutput(asci); 
+            break; 
 
             default:
                 printOutput("**Command not found.**");
