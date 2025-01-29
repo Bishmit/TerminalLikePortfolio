@@ -1,6 +1,8 @@
 let fs;
 let currentDir;
 const pathStack = ["home"];
+let stack = [];
+let history = [];  
 
 async function loadFSData() {
     const response = await fetch('../json/data.json'); 
@@ -48,7 +50,7 @@ function initializeTerminal() {
     }
 
     const commands = [
-        "ls", "cd", "cat", "clear", "pwd", "whoami", "neofetch"
+        "ls", "cd", "cat", "clear", "pwd", "whoami", "history", "neofetch"
     ];
     
     
@@ -59,6 +61,7 @@ function initializeTerminal() {
 
     // handle user commands
     function handleCommand(command) {
+        stack.push(command); 
         const parts = command.split(" ");
         const cmd = parts[0];
         const arg = parts[1];
@@ -134,6 +137,14 @@ function initializeTerminal() {
             case "neofetch":
               const asci = displayNeofetch(); 
               printOutput(asci); 
+            break; 
+
+            case "history":
+                for (let i = 0; i < stack.length-1; i++) {
+                     history.push(`${i + 1} ${stack[i]}`);
+                }
+                if(history.length == 0) printOutput(`No Command inserted yet to be in history Stack`);
+                else printOutput(history.join("<br>"));       
             break; 
 
             default:
