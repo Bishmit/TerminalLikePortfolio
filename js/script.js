@@ -202,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let i = 0;
     let typingContent = '';
 
-    // Function to type out the text
     function typeText() {
         if (i < text.length) {
             typingContent += text.charAt(i);
@@ -211,20 +210,16 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(typeText, 50);
         }
     }
-
-    // Start typing the text
+    
     typeText();
 
-    // Wait until typing is finished, then apply the fadeAway animation and show the terminal
     setTimeout(() => {
-        typingTextElement.classList.add('fadeAway'); // Start fade-out animation after typing is finished
-
-        // Remove typing text element and show terminal after fade-out
+        typingTextElement.classList.add('fadeAway'); 
         setTimeout(() => {
-            typingTextElement.remove(); // Remove the text element after fade-away
-            terminal.classList.add('visible'); // Make the terminal visible
-        }, 1500); // Wait for the fade-out animation to complete (2 seconds)
-    }, text.length * 50); // Wait until typing animation is finished
+            typingTextElement.remove(); 
+            terminal.classList.add('visible'); 
+        }, 1500); 
+    }, text.length * 50); 
 
 });
 
