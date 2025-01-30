@@ -123,7 +123,7 @@ function initializeTerminal() {
                 break;
 
             case "help":
-                printOutput(`Welcome to Terminal like Portfolio.<br>Download CV by typing <strong style="color:rgb(216, 186, 191);">wget cv.pdf</strong>`);
+                printOutput(`type <strong style="color:rgb(216, 186, 191);">wget cv.pdf</strong> to download CV`);
                 printOutput(commands.join("    ")); 
                 break;
 
@@ -195,28 +195,36 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const text = `<p>Type <b style="color:rgb(51, 161, 51);">help</b> to get Started.`;
+    const text = `<p>Welcome to Terminal like Portfolio. Type <b style="color:rgb(51, 161, 51);">help</b> for available commands.</p>`;
     const typingTextElement = document.getElementById('typingText');
-    const terminal = document.getElementById('terminal'); 
+    const terminal = document.getElementById('terminal');
 
     let i = 0;
-    let typingContent = ''; 
+    let typingContent = '';
 
+    // Function to type out the text
     function typeText() {
         if (i < text.length) {
             typingContent += text.charAt(i);
-            typingTextElement.innerHTML = typingContent; 
+            typingTextElement.innerHTML = typingContent;
             i++;
-            setTimeout(typeText, 40);
+            setTimeout(typeText, 50);
         }
     }
 
+    // Start typing the text
     typeText();
 
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            typingTextElement.remove();
-        }
-    });
+    // Wait until typing is finished, then apply the fadeAway animation and show the terminal
+    setTimeout(() => {
+        typingTextElement.classList.add('fadeAway'); // Start fade-out animation after typing is finished
+
+        // Remove typing text element and show terminal after fade-out
+        setTimeout(() => {
+            typingTextElement.remove(); // Remove the text element after fade-away
+            terminal.classList.add('visible'); // Make the terminal visible
+        }, 1500); // Wait for the fade-out animation to complete (2 seconds)
+    }, text.length * 50); // Wait until typing animation is finished
+
 });
 
