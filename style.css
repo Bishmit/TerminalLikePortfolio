@@ -13,25 +13,54 @@ body {
     padding-left: 10px;
 }
 
-#header {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+#typingText {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    width: 0;
+    animation: typing 0s steps(30) 1s forwards, blink 0.50s step-end infinite;
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
 }
 
 .terminal {
-    width: 95%;
-    max-width: 100%;
-    height: 75%;
-    max-height: 80%;
-    box-shadow: 0.5px 0.5px 1.2px 4.5px rgb(5, 56, 1);
-    border-radius: 10px;
+    width: 98%;
+    max-width: 98%;
+    height: 90%;
+    max-height: 90%;
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color:rgb(0, 10, 0); 
-    font-size: 110%; 
+    background-color: transparent;
+    font-size: 130%;
+    animation: slideUp 2s ease-out forwards;
 }
 
 .output {
@@ -54,13 +83,12 @@ body {
 
 .prompt {
     color: #00FF00;
-    font-size: large;
+    font-size: 100%;
     margin-right: -6px;
 }
 
 .user-command{
     font-size: 90%;
-    font-family: sans-serif;
 }
 
 .blinking-cursor {
@@ -69,8 +97,7 @@ body {
 }
 
 .commandInput{
-    font-size: 90%;
-    font-family: sans-serif;
+    font-size: 80%;
     border: none;
     outline: none;
     background-color: transparent;
@@ -102,32 +129,47 @@ body {
 }
 
 #gitproj{
-    color: rgb(38, 145, 145);
+    color: rgb(162, 183, 185);
 }
 
 #gitproj:hover {
-    color: rgb(127, 188, 223);
+    color: rgb(52, 211, 223);
 }
 
-.footerBottom{
-    padding: 20px;
-    text-align: center;
+#video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
-.footerBottom p{
-    color: rgb(212, 252, 207);
-    font-size: smaller;
+
+#intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
+
+.hidden {
+    display: none;
+}
+
 
 @media (max-width: 768px) {
     .terminal {
         width: 95%;
-        height: 60%;
+        height: 90%;
     }
 }
 
 @media (max-width: 480px) {
     .terminal {
         width: 100%;
-        height: 50%;
+        height: 100%;
     }
 }

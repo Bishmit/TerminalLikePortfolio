@@ -50,9 +50,8 @@ function initializeTerminal() {
     }
 
     const commands = [
-        "ls", "cd", "cat", "clear", "pwd", "whoami", "history", "neofetch"
+        "Avialable Commands:", "ls", "cd", "cat", "clear", "pwd", "whoami", "history", "wget", "reboot", "neofetch"
     ];
-    
     
     //get the current path as a string
     function getCurrentPath() {
@@ -67,6 +66,7 @@ function initializeTerminal() {
         const arg = parts[1];
 
         const projectNames = Object.keys(fs.home.projects); 
+
         switch (cmd) {
             case "ls":
                 if (typeof currentDir === "object") {
@@ -123,6 +123,7 @@ function initializeTerminal() {
                 break;
 
             case "help":
+                printOutput(`Welcome to Terminal like Portfolio.<br>Download CV by typing <strong style="color:rgb(216, 186, 191);">wget cv.pdf</strong>`);
                 printOutput(commands.join("    ")); 
                 break;
 
@@ -143,9 +144,30 @@ function initializeTerminal() {
                 for (let i = 0; i < stack.length-1; i++) {
                      history.push(`${i + 1} ${stack[i]}`);
                 }
-                if(history.length == 0) printOutput(`No Command inserted yet to be in history Stack`);
+                if(history.length == 0) printOutput(`**No Command inserted yet to be in history Stack**`);
                 else printOutput(history.join("<br>"));       
             break; 
+
+            case "wget":
+                if (arg === "cv.pdf") {
+                    printOutput(`Downloading CV...`);
+                    setTimeout(() => {
+                        const link = document.createElement('a');
+                        link.href = 'Resume/bishmit_CV.pdf'; 
+                        link.download = 'bishmit_CV.pdf'; 
+                        link.click(); 
+                    }, 500);
+                } else {
+                    printOutput("**Invalid wget argument.**");
+                }
+                break;
+
+            case "reboot":
+                printOutput("Rebooting...");
+                setTimeout(() => {
+                    location.reload();
+                }, 300);
+                break;
 
             default:
                 printOutput("**Command not found.**");
@@ -159,3 +181,42 @@ function initializeTerminal() {
 }
 
 loadFSData();
+
+document.addEventListener("DOMContentLoaded", function () {
+    const videoOverlay = document.getElementById("video-overlay");
+    const mainContent = document.getElementById("main-content");
+    const introVideo = document.getElementById("intro-video");
+
+    // Hide video overlay after 1 seconds
+    setTimeout(() => {
+        videoOverlay.style.display = "none";
+        mainContent.classList.remove("hidden");
+    }, 1100);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const text = `<p>Type <b style="color:rgb(51, 161, 51);">help</b> to get Started.`;
+    const typingTextElement = document.getElementById('typingText');
+    const terminal = document.getElementById('terminal'); 
+
+    let i = 0;
+    let typingContent = ''; 
+
+    function typeText() {
+        if (i < text.length) {
+            typingContent += text.charAt(i);
+            typingTextElement.innerHTML = typingContent; 
+            i++;
+            setTimeout(typeText, 40);
+        }
+    }
+
+    typeText();
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            typingTextElement.remove();
+        }
+    });
+});
+
