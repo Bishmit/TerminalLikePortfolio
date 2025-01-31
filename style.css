@@ -37,6 +37,27 @@ body {
     pointer-events: none;
 }
 
+.colorPicker {
+    position:absolute; 
+    margin-top: 20px;
+    font-size: larger;
+    padding: 25px;
+    background-color: rgba(52, 68, 56, 0.95);
+    border-radius: 10px;
+    box-shadow: inset 15px 15px 15px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    z-index: 2;
+}
+
+
+.colorPicker label {
+    margin-right: 10px;
+}
+
+.colorPicker.visible{
+    opacity: 1;
+}
+
 #typingText {
     font-size: 20px;
     white-space: nowrap;
@@ -45,6 +66,7 @@ body {
     display: flex;
     justify-content: center;
     width: 0;
+    z-index: 1;
     animation: fadeAway 2s ease-out forwards;
     animation: typing 0s steps(30) 1s forwards, blink 0.50s step-end infinite;  
 }
@@ -103,9 +125,13 @@ body {
 }
 
 .prompt {
-    color: #00FF00;
+    color: #00ff00d7;
     font-size: 100%;
     margin-right: -6px;
+}
+
+.directory{
+    color: rgb(0, 110, 255);
 }
 
 .user-command{
@@ -114,7 +140,7 @@ body {
 
 .blinking-cursor {
     display: none;
-    color: #00FF00;
+    color: rgba(245, 245, 245, 0.993);
 }
 
 .commandInput{
@@ -135,7 +161,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #00FF00;
+    background-color: rgba(245, 245, 245, 0.705);
     border-radius: 10px;
 }
 

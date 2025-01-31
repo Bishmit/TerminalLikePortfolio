@@ -26,7 +26,7 @@ function initializeTerminal() {
     // to print the prompt
     function printPrompt() {
         const currentPath = getCurrentPath();
-        output.innerHTML += `<span class="prompt">bishmitregmi@bishmit:~/${currentPath}$ </span><input type="text" class="commandInput"><br>`;
+        output.innerHTML += `<span class="prompt">bishmitregmi@bishmit </span>:<span class ="directory">~/${currentPath}</span>$ <input type="text" class="commandInput"><br>`;
         const newCommandInput = document.querySelectorAll('.commandInput');
         const lastCommandInput = newCommandInput[newCommandInput.length - 1];
         lastCommandInput.addEventListener("keydown", function (event) {
@@ -58,6 +58,8 @@ function initializeTerminal() {
         return pathStack.join("/");
     }
 
+    const colorpicker = document.getElementById('colorPicker'); 
+    const wrapper = document.getElementById('wrapper'); 
     // handle user commands
     function handleCommand(command) {
         stack.push(command); 
@@ -123,7 +125,7 @@ function initializeTerminal() {
                 break;
 
             case "help":
-                printOutput(`type <strong style="color:rgb(216, 186, 191);">wget cv.pdf</strong> to download CV`);
+                printOutput(`- type <strong style="color:rgb(44, 128, 65);">wget cv.pdf</strong> to download CV<br>- type <strong style="color:rgb(44, 128, 65);">set bgcolor</strong> to change background color.`);
                 printOutput(commands.join("    ")); 
                 break;
 
@@ -169,11 +171,44 @@ function initializeTerminal() {
                 }, 300);
                 break;
 
+                case "set":
+                    if (arg == "bgcolor") {
+                        colorpicker.classList.add('visible'); 
+                        wrapper.style.pointerEvents = 'auto'; 
+                
+                        const redSlider = document.getElementById("red");
+                        const greenSlider = document.getElementById("green");
+                        const blueSlider = document.getElementById("blue");
+                
+                        //function to update background color
+                        function updateBackgroundColor() {
+                            const red = redSlider.value;
+                            const green = greenSlider.value;
+                            const blue = blueSlider.value;
+                
+                            document.body.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+                        }
+                
+                        redSlider.addEventListener("input", updateBackgroundColor);
+                        greenSlider.addEventListener("input", updateBackgroundColor);
+                        blueSlider.addEventListener("input", updateBackgroundColor);
+                
+                        updateBackgroundColor();
+                    }
+                    break;                
+
             default:
                 printOutput("**Command not found.**");
                 break;
         }
-
+        document.addEventListener('mousedown', function(event) {
+            if ((event.button === 0 || event.button === 2) && !colorpicker.contains(event.target)) {
+                // remove the 'visible' class to hide the colorpicker when mouse is pressed outside of colorpicker div
+                colorpicker.classList.remove('visible');
+                wrapper.style.pointerEvents = 'none'; 
+            }
+        });
+        
         printPrompt();
     }
 
