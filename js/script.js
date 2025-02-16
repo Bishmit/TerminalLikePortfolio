@@ -26,7 +26,8 @@ function initializeTerminal() {
     // to print the prompt
     function printPrompt() {
         const currentPath = getCurrentPath();
-        output.innerHTML += `<span class="prompt">bishmitregmi@bishmit </span>:<span class ="directory">~/${currentPath}</span>$ <input type="text" class="commandInput"><br>`;
+        let displayPath = currentPath === "home" ? "~" : currentPath.replace(/^home\//, "~/");
+        output.innerHTML += `<span class="prompt">bishmitregmi@bishmit </span>:<span class="directory">${displayPath}</span>$ <input type="text" class="commandInput"><br>`;
         const newCommandInput = document.querySelectorAll('.commandInput');
         const lastCommandInput = newCommandInput[newCommandInput.length - 1];
         lastCommandInput.addEventListener("keydown", function (event) {
@@ -78,7 +79,7 @@ function initializeTerminal() {
                 }
                 break;
                 case "cd":
-                    if (arg === "/") {
+                    if (arg === "~") {
                         currentDir = fs.home;
                         pathStack.length = 1; // reset pathStack to root
                     } else if (arg === "..") {
@@ -257,4 +258,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }, text.length * 50); 
 
 });
-
