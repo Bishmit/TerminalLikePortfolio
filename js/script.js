@@ -3,6 +3,7 @@ let currentDir;
 const pathStack = ["home"];
 let stack = [];
 let history = [];  
+let historyIndex = -1; 
 
 async function loadFSData() {
     const response = await fetch('../json/data.json'); 
@@ -48,6 +49,28 @@ function initializeTerminal() {
                 lastCommandInput.focus();
             }
         });
+
+        // using stack navigating by pressing up and down key for previous command
+        lastCommandInput.addEventListener("keydown", function (event) {
+            if (event.key === "ArrowUp") {
+                if (historyIndex < stack.length - 1) {
+                    historyIndex++;
+                    lastCommandInput.value = stack[stack.length - 1 - historyIndex];
+                    inputField.value = stack[stack.length - 1 - historyIndex];
+                }
+            } else if (event.key === "ArrowDown") {
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    lastCommandInput.value = stack[stack.length - 1 - historyIndex];
+                    inputField.value = stack[stack.length - 1 - historyIndex];
+                } else {
+                    historyIndex = -1;
+                    lastCommandInput.value = '';
+                    inputField.value = '';
+                }
+            }
+            
+        }); 
     }
 
     const commands = [
@@ -61,6 +84,8 @@ function initializeTerminal() {
 
     const colorpicker = document.getElementById('colorPicker'); 
     const wrapper = document.getElementById('wrapper'); 
+
+    const inputField =document.querySelectorAll('.commandInput');
     // handle user commands
     function handleCommand(command) {
         stack.push(command); 
@@ -86,7 +111,6 @@ function initializeTerminal() {
                         if (pathStack.length > 1) {
                             pathStack.pop();
                             currentDir = pathStack.reduce((acc, key) => acc[key], fs);
-                            printOutput(`**Returned to parent directory: ${getCurrentPath()}**`);
                         } else {
                             printOutput("**Already at the root directory.**");
                         }
@@ -209,12 +233,13 @@ function initializeTerminal() {
                 wrapper.style.pointerEvents = 'none'; 
             }
         });
-        
+   
         printPrompt();
     }
 
     printPrompt();
 }
+
 
 loadFSData();
 
