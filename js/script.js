@@ -74,7 +74,7 @@ function initializeTerminal() {
     }
 
     const commands = [
-        "Avialable Commands:", "ls", "cd", "cat", "clear", "pwd", "whoami", "history", "wget", "reboot", "neofetch"
+        "Avialable Commands:", "ls", "cd", "cat", "clear", "pwd", "whoami", "history", "wget", "reboot", "neofetch", "gui"
     ];
     
     //get the current path as a string
@@ -150,7 +150,7 @@ function initializeTerminal() {
                 break;
 
             case "help":
-                printOutput(`- type <strong style="color:rgb(44, 128, 65);">wget cv.pdf</strong> to download CV<br>- type <strong style="color:rgb(44, 128, 65);">set bgcolor</strong> to change background color.`);
+                printOutput(`- type <strong style="color:rgb(68, 196, 100);">wget cv.pdf</strong> to download CV<br>- type <strong style="color:rgb(68, 196, 100);">set bgcolor</strong> to change background color.<br>- type <strong style="color:rgb(68, 196, 100);">gui</strong> to open GUI portfolio.`);
                 printOutput(commands.join("    ")); 
                 break;
 
@@ -220,7 +220,11 @@ function initializeTerminal() {
                 
                         updateBackgroundColor();
                     }
-                    break;                
+                    break;     
+                    
+                    case "gui":
+                        window.open("https://bishmit.github.io/portfolio/", "_blank");
+                    break; 
 
             default:
                 printOutput("**Command not found.**");
